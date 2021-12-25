@@ -42,12 +42,12 @@ def get_now():
     return current_time
 
 if __name__ == "__main__":    
-    # IDs = ["127727","123843","125800","127744", "122908"]
-    IDs = ['125800']
+    IDs = ["127727","123843","125800","127744", "122908"]
+    # IDs = ['125800']
 
     for i in IDs:
         temp = temperatureGen()
-        # fill(i, temp)
+        fill(i, temp)
         current_time = get_now()
         print('ID: ', i)
         print("temp: ", temp)
