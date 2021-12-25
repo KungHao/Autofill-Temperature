@@ -56,7 +56,8 @@ def main(id):
     print('ID: ', id)
     print("Temperature: ", temp)
     print("Time: ", current_time)
-    return  str('ID: ' + id + "\nTemperature: " + temp + "\nTime: " + current_time)
+    res = 'ID: ' + id + "\nTemperature: " + temp + "\nTime: " + current_time
+    return res
 
 app = Flask(__name__)
 
@@ -94,8 +95,7 @@ def handle_message(event):
             print(res)
             line_bot_api.reply_message(
                 event.reply_token,
-                TextSendMessage(text=res)
-                )
+                TextSendMessage(text=res))
         return 0
     # if event.message.text.lower() == "":
     #     content = ptt_hot()
