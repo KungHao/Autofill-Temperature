@@ -1,14 +1,14 @@
+import os
+import time
+import random
 from datetime import datetime
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-import random
-import time
-
-
 
 def fill(empid, temp):
     options = webdriver.ChromeOptions()
     options.add_argument("--disable-notifications")
+    options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
     # browser = webdriver.Chrome('/usr/local/bin/chromedriver', options=options)
     browser = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=options)
     browser.get('https://zh.surveymonkey.com/r/EmployeeHealthCheck') 
