@@ -4,19 +4,18 @@ from selenium.webdriver.chrome.options import Options
 import random
 import time
 
-options = webdriver.ChromeOptions()
-options.add_argument("--disable-notifications")
+
 
 def fill(empid, temp):
-    browser = webdriver.Chrome('/usr/local/bin/chromedriver', options=options)
+    options = webdriver.ChromeOptions()
+    options.add_argument("--disable-notifications")
+    # browser = webdriver.Chrome('/usr/local/bin/chromedriver', options=options)
+    browser = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=options)
     browser.get('https://zh.surveymonkey.com/r/EmployeeHealthCheck') 
 
     radiobutton = browser.find_elements_by_class_name("radio-button-display")
-
     textbox = browser.find_elements_by_class_name("wds-input")
-
     checkbox = browser.find_elements_by_class_name("checkbox-button-display")
-
     radiobutton_checked = [0,1,5,6,8]
 
     for i in radiobutton_checked:
