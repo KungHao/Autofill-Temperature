@@ -10,8 +10,8 @@ def fill(empid, temp):
     options.add_argument("--disable-notifications")
     options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
     # browser = webdriver.Chrome('/usr/local/bin/chromedriver', options=options)
-    browser = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=options)
-    browser.get('https://zh.surveymonkey.com/r/EmployeeHealthCheck') 
+    browser = webdriver.Chrome(os.environ.get("CHROMEDRIVER_PATH"), options=options)
+    browser.get('https://zh.surveymonkey.com/r/EmployeeHealthCheck')
 
     radiobutton = browser.find_elements_by_class_name("radio-button-display")
     textbox = browser.find_elements_by_class_name("wds-input")
