@@ -12,7 +12,8 @@ from linebot.models import *
 options = webdriver.ChromeOptions()
 options.add_argument("--disable-notifications")
 
-IDs = ["127727","123843","125800","127744", "122908"]
+# IDs = ["127727","123843","125800","127744", "122908"]
+IDs = ['125800']
 
 def fill(empid, temp):
     browser = webdriver.Chrome('/usr/local/bin/chromedriver', options=options)
@@ -86,13 +87,14 @@ def callback():
 def handle_message(event):
     # print("event.reply_token:", event.reply_token)
     # print("event.message.text:", event.message.text)
-    for i in IDs:
-        res = main(i)
-        line_bot_api.reply_message(
-            event.reply_token,
-            TextSendMessage(text=res)
-            )
-    return 0
+    if event.message.text == 'test':
+        for i in IDs:
+            res = main(i)
+            line_bot_api.reply_message(
+                event.reply_token,
+                TextSendMessage(text=res)
+                )
+        return 0
     # if event.message.text.lower() == "":
     #     content = ptt_hot()
     #     line_bot_api.reply_message(
