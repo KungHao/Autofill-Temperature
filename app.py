@@ -4,27 +4,29 @@ from datetime import datetime
 from selenium import webdriver
 from flask import Flask, request, abort
 from selenium.webdriver.chrome.options import Options
+from webdriver_manager.chrome import ChromeDriverManager
 from linebot import ( LineBotApi, WebhookHandler )
 from linebot.exceptions import ( InvalidSignatureError )
 from linebot.models import *
 
-# James Function
-options = webdriver.ChromeOptions()
-options.add_argument("--disable-notifications")
 
+# James Function
 # IDs = ["127727","123843","125800","127744", "122908"]
 IDs = ['125800']
 
 def fill(empid, temp):
-    browser = webdriver.Chrome('/usr/local/bin/chromedriver', options=options)
-    browser.get('https://zh.surveymonkey.com/r/EmployeeHealthCheck') 
+    options = webdriver.ChromeOptions()
+    options.add_argument("--disable-notifications")
+    # options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
+    # browser = webdriver.Chrome(os.environ.get("CHROMEDRIVER_PATH"), options=options)
+    # browser = webdriver.Chrome('D:/Github/Autofill-Temperature/chromedriver/chromedriver.exe', options=options)
+
+    browser = webdriver.Chrome(ChromeDriverManager().install(), options=options)
+    browser.get('https://zh.surveymonkey.com/r/EmployeeHealthCheck')
 
     radiobutton = browser.find_elements_by_class_name("radio-button-display")
-
     textbox = browser.find_elements_by_class_name("wds-input")
-
     checkbox = browser.find_elements_by_class_name("checkbox-button-display")
-
     radiobutton_checked = [0,1,5,6,8]
 
     for i in radiobutton_checked:
