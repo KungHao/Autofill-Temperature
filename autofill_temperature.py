@@ -1,16 +1,22 @@
 import os
 import time
 import random
+from config import *
 from datetime import datetime
 from selenium import webdriver
+from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
 
 def fill(empid, temp):
     options = webdriver.ChromeOptions()
     options.add_argument("--disable-notifications")
-    options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
-    # browser = webdriver.Chrome('/usr/local/bin/chromedriver', options=options)
-    browser = webdriver.Chrome(os.environ.get("CHROMEDRIVER_PATH"), options=options)
+    # options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
+    # browser = webdriver.Chrome(os.environ.get("CHROMEDRIVER_PATH"), options=options)
+    # browser = webdriver.Chrome('D:/Github/Autofill-Temperature/chromedriver/chromedriver.exe', options=options)
+
+    browser = webdriver.Chrome(ChromeDriverManager().install(), options=options)
     browser.get('https://zh.surveymonkey.com/r/EmployeeHealthCheck')
 
     radiobutton = browser.find_elements_by_class_name("radio-button-display")
@@ -41,8 +47,8 @@ def get_now():
     return current_time
 
 if __name__ == "__main__":    
-    IDs = ["127727","123843","125800","127744", "122908"]
-    # IDs = ['125800']
+    # IDs = ["127727","123843","125800","127744", "122908"]
+    IDs = ['125800']
 
     for i in IDs:
         temp = temperatureGen()
