@@ -91,7 +91,8 @@ def handle_message(event):
     # print("event.reply_token:", event.reply_token)
     # print("event.message.text:", event.message.text)
     if event.message.text == 'Test':
-        line_bot_api.reply_message(event.reply_token, 'hello world')
+        line_bot_api.reply_message(event.reply_token,
+            TextSendMessage(text='hello world Test'))
         for i in IDs:
             res = main(i)
             print(res)
@@ -99,118 +100,6 @@ def handle_message(event):
                 event.reply_token,
                 TextSendMessage(text=res))
         return 0
-    # if event.message.text.lower() == "":
-    #     content = ptt_hot()
-    #     line_bot_api.reply_message(
-    #         event.reply_token,
-    #         TextSendMessage(text=content))
-    #     return 0
-    # elif event.message.text.lower() == 'show':
-    #     flex_send_message = FlexSendMessage(
-    #             alt_text='alt_text',
-    #             contents={
-    #                 'type':'bubble',
-    #                 'header':{
-    #                     'type':'box',
-    #                     'layout':'vertical',
-    #                     'contents':
-    #                         [
-    #                             {
-    #                                 "type": "text",
-    #                                 "text": "Choose one",
-    #                                 "weight": "bold",
-    #                                 "align": "center"
-    #                             },
-    #                             {
-    #                                 "type": "separator",
-    #                                 "color": "#000000",
-    #                                 "margin": "xxl"
-    #                             }
-    #                         ]
-    #                 },
-    #                 "body": {
-    #                     "type": "box",
-    #                     "layout": "vertical",
-    #                     "contents": [
-    #                         {
-    #                             "type": "button",
-    #                             "action": {
-    #                                 "type": "message",
-    #                                 "label": "Lifeismoney",
-    #                                 "text": "Lifeismoney"
-    #                             }
-    #                         },
-    #                         {
-    #                             "type": "button",
-    #                             "action": {
-    #                                 "type": "message",
-    #                                 "label": "Stock",
-    #                                 "text": 'Stock'
-    #                             }
-    #                         },
-    #                         {
-    #                             "type": "button",
-    #                             "action": {
-    #                                 "type": "message",
-    #                                 "label": "Tech_Job",
-    #                                 "text": 'Tech_Job'
-    #                             }
-    #                         },
-    #                         {
-    #                             "type": "button",
-    #                             "action": {
-    #                                 "type": "message",
-    #                                 "label": "科技新報",
-    #                                 "text": '科技新報'
-    #                             }
-    #                         },
-    #                         {
-    #                             "type": "button",
-    #                             "action": {
-    #                                 "type": "message",
-    #                                 "label": "Sex",
-    #                                 "text": 'Sex'
-    #                             }
-    #                         },
-    #                         {
-    #                             "type": "button",
-    #                             "action": {
-    #                                 "type": "message",
-    #                                 "label": "NSwitch",
-    #                                 "text": 'NSwitch'
-    #                             }
-    #                         },
-    #                         {
-    #                             "type": "button",
-    #                             "action": {
-    #                                 "type": "message",
-    #                                 "label": "Beauty",
-    #                                 "text": 'Beauty'
-    #                             }
-    #                         },
-    #                         {
-    #                             "type": "button",
-    #                             "action": {
-    #                                 "type": "message",
-    #                                 "label": "japanavgirls",
-    #                                 "text": 'japanavgirls'
-    #                             }
-    #                         },
-    #                         {
-    #                             "type": "button",
-    #                             "action": {
-    #                                 "type": "message",
-    #                                 "label": "Shu-Lin",
-    #                                 "text": 'Shu-Lin'
-    #                             }
-    #                         }
-    #                     ]
-    #                 }
-    #             }
-    #         )
-        
-    #     line_bot_api.reply_message(event.reply_token, flex_send_message)
-        
     else:
         message = TextSendMessage(text=event.message.text)
         line_bot_api.reply_message(event.reply_token, message)
