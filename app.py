@@ -58,7 +58,7 @@ def main(id):
     print('ID: ', id)
     print("Temperature: ", temp)
     print("Time: ", current_time)
-    res = 'ID: ' + id + "\nTemperature: " + temp + "\nTime: " + current_time
+    res = 'ID: ' + id + "\nTemperature: " + str(temp) + "\nTime: " + current_time
     return res
 
 app = Flask(__name__)
