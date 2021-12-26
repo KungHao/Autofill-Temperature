@@ -11,8 +11,8 @@ from linebot.models import *
 
 
 # James Function
-# IDs = ["127727","123843","125800","127744", "122908"]
-IDs = ['125800']
+IDs = ["127727","123843","125800","127744", "122908"]
+# IDs = ['125800']
 
 def fill(empid, temp):
     options = webdriver.ChromeOptions()
@@ -79,6 +79,7 @@ def callback():
     body = request.get_data(as_text=True)
     app.logger.info("Request body: " + body)
     # handle webhook body
+    print(body)
     try:
         handler.handle(body, signature)
     except InvalidSignatureError:
@@ -90,9 +91,9 @@ def callback():
 def handle_message(event):
     # print("event.reply_token:", event.reply_token)
     # print("event.message.text:", event.message.text)
-    if event.message.text == 'Test':
+    if event.message.text == 'Tsmc':
         line_bot_api.reply_message(event.reply_token,
-            TextSendMessage(text='hello world Test'))
+            TextSendMessage(text='Done!!!'))
         for i in IDs:
             res = main(i)
             print(res)
