@@ -89,17 +89,18 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
+    msg = event.message.text.lower()
     # print("event.reply_token:", event.reply_token)
     # print("event.message.text:", event.message.text)
-    if event.message.text == 'Tsmc':
+    if 'tsmc,' in msg:
+        ID = msg.split(',')[1]
         line_bot_api.reply_message(event.reply_token,
             TextSendMessage(text='Done!!!'))
-        for i in IDs:
-            res = main(i)
-            print(res)
-            line_bot_api.reply_message(
-                event.reply_token,
-                TextSendMessage(text=res))
+        res = main(ID)
+        print(res)
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text=res))
         return 0
     else:
         message = TextSendMessage(text=event.message.text)
