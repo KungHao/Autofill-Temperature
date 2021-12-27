@@ -100,6 +100,11 @@ def handle_message(event):
             event.reply_token,
             TextSendMessage(text=res))
         return 0
+    elif: msg == '使用說明':
+        res = '請打上: tsmc,工號\n即可自動回報體溫。'
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text=res))
     else:
         message = TextSendMessage(text=event.message.text)
         line_bot_api.reply_message(event.reply_token, message)
