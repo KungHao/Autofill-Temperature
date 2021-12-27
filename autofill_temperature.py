@@ -1,5 +1,6 @@
 import time
 import random
+from send_notify import *
 from datetime import datetime
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
@@ -35,7 +36,7 @@ def fill(empid, temp):
     browser.close()
 
 def temperatureGen():
-    return round(random.uniform(35.6, 37.3), 1)
+    return round(random.uniform(35.6, 37.1), 1)
 
 def get_now():
     now = datetime.now()
@@ -43,13 +44,15 @@ def get_now():
     return current_time
 
 if __name__ == "__main__":    
-    # IDs = ["127727","123843","125800","127744", "122908"]
-    IDs = ['125800']
+    IDs = ["125800", "123843", "127727", "127744", "122908"]
 
     for i in IDs:
         temp = temperatureGen()
         fill(i, temp)
         current_time = get_now()
+
+        res = '\nID: ' + i + "\nTime: " + current_time + "\nTemperature: " + str(temp)
         print('ID: ', i)
         print("temp: ", temp)
         print("Current Time =", current_time)
+        lineNotifyMessage('swVB9l0nKNETNscqFz8HkzhqCNot9W0fKSYg8Z0R9yj', res)
