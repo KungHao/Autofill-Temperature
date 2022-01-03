@@ -30,7 +30,7 @@ def fill(empid, temp):
     for i in range(len(textbox)):
         textbox[i].send_keys(str(info[i]))
 
-    time.sleep(1)
+    time.sleep(2)
 
     browser.find_elements_by_class_name("btn")[0].click()
     browser.close()
@@ -44,7 +44,7 @@ def get_now():
     return current_time
 
 if __name__ == "__main__":    
-    IDs = ["125800", "123843", "127727", "127744", "122908", '125916', '066763', '116282', '121713', '118071', '122909']
+    IDs = ["125800", "123843", "127727", "127744", "122908", '125916', '066763', '116282', '121713', '125897', '115697']
 
     for i in IDs:
         temp = temperatureGen()
@@ -55,4 +55,4 @@ if __name__ == "__main__":
         print('ID: ', i)
         print("temp: ", temp)
         print("Current Time =", current_time)
-        lineNotifyMessage('swVB9l0nKNETNscqFz8HkzhqCNot9W0fKSYg8Z0R9yj', res)
+        lineNotifyMessage('196YlNGoW1ufiDV71VhFzP1SzirT2Xls2Tz6PNSYyR7', res)
