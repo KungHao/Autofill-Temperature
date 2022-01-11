@@ -19,7 +19,7 @@ def fill(empid, temp):
     radiobutton = browser.find_elements_by_class_name("radio-button-display")
     textbox = browser.find_elements_by_class_name("wds-input")
     checkbox = browser.find_elements_by_class_name("checkbox-button-display")
-    radiobutton_checked = [0,1,5,6,8]
+    radiobutton_checked = [0,1,5,6,9,10]
 
     for i in radiobutton_checked:
         radiobutton[i].click()
