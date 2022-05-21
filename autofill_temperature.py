@@ -16,13 +16,15 @@ def fill(empid, temp):
     browser = webdriver.Chrome(ChromeDriverManager().install(), options=options)
     browser.get('https://zh.surveymonkey.com/r/EmployeeHealthCheck')
 
-    radiobutton = browser.find_elements_by_class_name("radio-button-display")
+    radioBtn = browser.find_elements_by_class_name("radio-button-display")
+    radioTxt = browser.find_elements_by_class_name("radio-button-label-text")
     textbox = browser.find_elements_by_class_name("wds-input")
     checkbox = browser.find_elements_by_class_name("checkbox-button-display")
-    radiobutton_checked = [0,1,5,6,9,10]
+    radioBtn_checked = [0, 1, 7, 9, 10, 12]
 
-    for i in radiobutton_checked:
-        radiobutton[i].click()
+    for i in radioBtn_checked:
+        # print(radioTxt[i].text)
+        radioBtn[i].click()
 
     checkbox[0].click()
     info = [empid, temp]
@@ -44,7 +46,8 @@ def get_now():
     return current_time
 
 if __name__ == "__main__":    
-    IDs = ["123843", "127727", "127744", "122908", '125916', '066763', '116282', '121713', '125897', '115697']
+    # IDs = ["123843", "127727", "127744", "122908", '125916', '066763', '116282', '121713', '125897', '115697']
+    IDs = ['125800']
 
     for i in IDs:
         temp = temperatureGen()
