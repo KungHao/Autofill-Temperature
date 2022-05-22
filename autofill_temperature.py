@@ -8,7 +8,9 @@ from webdriver_manager.chrome import ChromeDriverManager
 
 def fill(empid, temp):
     options = webdriver.ChromeOptions()
+    options.add_argument('--no-sandbox')
     options.add_argument("--disable-notifications")
+    options.add_argument('--disable-dev-shm-usage')
     # options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
     # browser = webdriver.Chrome(os.environ.get("CHROMEDRIVER_PATH"), options=options)
     # browser = webdriver.Chrome('D:/Github/Autofill-Temperature/chromedriver/chromedriver.exe', options=options)
