@@ -35,7 +35,7 @@ def fill(empid, temp):
 
     time.sleep(2)
 
-    # browser.find_elements_by_class_name("btn")[0].click()
+    browser.find_elements(By.CLASS_NAME, "btn")[0].click()
     browser.close()
 
 def temperatureGen():
