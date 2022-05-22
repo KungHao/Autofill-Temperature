@@ -3,7 +3,9 @@ import random
 from send_notify import *
 from datetime import datetime
 from selenium import webdriver
+from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 
 def fill(empid, temp):
@@ -11,17 +13,14 @@ def fill(empid, temp):
     options.add_argument('--no-sandbox')
     options.add_argument("--disable-notifications")
     options.add_argument('--disable-dev-shm-usage')
-    # options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
-    # browser = webdriver.Chrome(os.environ.get("CHROMEDRIVER_PATH"), options=options)
-    # browser = webdriver.Chrome('D:/Github/Autofill-Temperature/chromedriver/chromedriver.exe', options=options)
-
-    browser = webdriver.Chrome(ChromeDriverManager().install(), options=options)
+    
+    browser = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
     browser.get('https://zh.surveymonkey.com/r/EmployeeHealthCheck')
 
-    radioBtn = browser.find_elements_by_class_name("radio-button-display")
-    radioTxt = browser.find_elements_by_class_name("radio-button-label-text")
-    textbox = browser.find_elements_by_class_name("wds-input")
-    checkbox = browser.find_elements_by_class_name("checkbox-button-display")
+    radioBtn = browser.find_elements(By.CLASS_NAME, "radio-button-display")
+    radioTxt = browser.find_elements(By.CLASS_NAME, "radio-button-label-text")
+    textbox = browser.find_elements(By.CLASS_NAME, "wds-input")
+    checkbox = browser.find_elements(By.CLASS_NAME, "checkbox-button-display")
     radioBtn_checked = [0, 1, 7, 9, 10, 12]
 
     for i in radioBtn_checked:
@@ -36,7 +35,7 @@ def fill(empid, temp):
 
     time.sleep(2)
 
-    browser.find_elements_by_class_name("btn")[0].click()
+    # browser.find_elements_by_class_name("btn")[0].click()
     browser.close()
 
 def temperatureGen():
