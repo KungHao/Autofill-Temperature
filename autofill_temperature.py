@@ -21,14 +21,16 @@ def fill(empid, temp):
     radioTxt = browser.find_elements(By.CLASS_NAME, "radio-button-label-text")
     textbox = browser.find_elements(By.CLASS_NAME, "wds-input")
     checkbox = browser.find_elements(By.CLASS_NAME, "checkbox-button-display")
-    radioBtn_checked = [0, 1, 7, 9, 10, 12]
+    radioBtn_checked = [0, 4, 8, 9]
+
 
     for i in radioBtn_checked:
         # print(radioTxt[i].text)
         radioBtn[i].click()
 
-    checkbox[0].click()
-    info = [empid, temp]
+    # checkbox[0].click()
+    # info = [empid, temp]
+    info = [empid]
 
     for i in range(len(textbox)):
         textbox[i].send_keys(str(info[i]))
@@ -36,7 +38,9 @@ def fill(empid, temp):
     time.sleep(2)
 
     browser.find_elements(By.CLASS_NAME, "next-button")[0].click()
+    done = browser.find_elements(By.XPATH, "//span[contains(text(),'You have completed!')]")
     browser.close()
+    return done
 
 def temperatureGen():
     return round(random.uniform(35.6, 37.1), 1)
@@ -46,17 +50,24 @@ def get_now():
     current_time = now.strftime("%H:%M:%S")
     return current_time
 
+def result(res) -> str:
+    if len(res) == 0:
+        return "失敗"
+    else:
+        return "成功"
+
 if __name__ == "__main__":    
     # IDs = ["123843", "127727", "127744", "122908", '125916', '066763', '116282', '121713', '125897', '115697']
     IDs = ['125800']
 
     for i in IDs:
         temp = temperatureGen()
-        fill(i, temp)
+        res = fill(i, temp)
         current_time = get_now()
-
-        res = '\nID: ' + i + "\nTime: " + current_time + "\nTemperature: " + str(temp)
+        result = result(res)
+        res = f"\nID: {i} \nTime: {current_time}\nTemperature: {str(temp)} \nResult: {result}"
         print('ID: ', i)
         print("temp: ", temp)
         print("Current Time =", current_time)
         lineNotifyMessage('196YlNGoW1ufiDV71VhFzP1SzirT2Xls2Tz6PNSYyR7', res)
+
