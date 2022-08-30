@@ -1,7 +1,7 @@
 import time
 import random
 from send_notify import *
-from datetime import datetime
+from datetime import datetime, timezone, timedelta
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
@@ -47,6 +47,7 @@ def temperatureGen():
 
 def get_now():
     now = datetime.now()
+    now = now.astimezone(timezone(timedelta(hours=8)))
     current_time = now.strftime("%H:%M:%S")
     return current_time
 
@@ -68,6 +69,7 @@ if __name__ == "__main__":
         res = f"\nID: {i} \nTime: {current_time}\nTemperature: {str(temp)} \nResult: {result}"
         print('ID: ', i)
         print("temp: ", temp)
-        print("Current Time =", current_time)
+        print("Current Time :", current_time)
+        print("Done: ", result)
         lineNotifyMessage('196YlNGoW1ufiDV71VhFzP1SzirT2Xls2Tz6PNSYyR7', res)
 
