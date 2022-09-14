@@ -62,11 +62,11 @@ if __name__ == "__main__":
     IDs = ['125800', '123843']
 
     for i in IDs:
-        temp = temperatureGen()
+        # temp = temperatureGen()
         res = fill(i, temp)
         current_time = get_now()
         result = result(res)
-        res = f"\nID: {i} \nTime: {current_time}\nTemperature: {str(temp)} \nResult: {result}"
+        res = f"\nResult: {result}\nID: {i} \nTime: {current_time}"
         print('ID: ', i)
         print("temp: ", temp)
         print("Current Time :", current_time)
