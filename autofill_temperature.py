@@ -8,7 +8,7 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 
-def fill(empid, temp):
+def fill(empid):
     options = webdriver.ChromeOptions()
     options.add_argument('--no-sandbox')
     options.add_argument("--disable-notifications")
@@ -61,15 +61,16 @@ if __name__ == "__main__":
     # IDs = ["123843", "127727", "127744", "122908", '125916', '066763', '116282', '121713', '125897', '115697']
     IDs = ['125800', '123843']
 
-    for i in IDs:
+    for ID in IDs:
         # temp = temperatureGen()
-        res = fill(i, temp)
+        res = fill(ID)
         current_time = get_now()
         result = result(res)
-        res = f"\nResult: {result}\nID: {i} \nTime: {current_time}"
-        print('ID: ', i)
-        print("temp: ", temp)
-        print("Current Time :", current_time)
-        print("Done: ", result)
-        lineNotifyMessage('196YlNGoW1ufiDV71VhFzP1SzirT2Xls2Tz6PNSYyR7', res)
+        line_reply = f"\nResult: {result}\nID: {ID} \nTime: {current_time}"
+        print(line_reply)
+        # print('ID: ', ID)
+        # print("temp: ", temp)
+        # print("Current Time :", current_time)
+        # print("Result: ", result)
+        lineNotifyMessage('196YlNGoW1ufiDV71VhFzP1SzirT2Xls2Tz6PNSYyR7', line_reply)
 
