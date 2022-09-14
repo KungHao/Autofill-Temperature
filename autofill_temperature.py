@@ -39,6 +39,7 @@ def fill(empid):
 
     browser.find_elements(By.CLASS_NAME, "next-button")[0].click()
     done = browser.find_elements(By.XPATH, "//span[contains(text(),'You have completed!')]")
+    
     browser.close()
     return done
 
@@ -51,7 +52,7 @@ def get_now():
     current_time = now.strftime("%H:%M:%S")
     return current_time
 
-def result(res) -> str:
+def check_result(res) -> str:
     if len(res) == 0:
         return "失敗"
     else:
@@ -65,7 +66,7 @@ if __name__ == "__main__":
         # temp = temperatureGen()
         res = fill(ID)
         current_time = get_now()
-        result = result(res)
+        result = check_result(res)
         line_reply = f"\nResult: {result}\nID: {ID} \nTime: {current_time}"
         print(line_reply)
         # print('ID: ', ID)
