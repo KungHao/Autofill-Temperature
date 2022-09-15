@@ -39,7 +39,7 @@ def fill(empid):
 
     browser.find_elements(By.CLASS_NAME, "next-button")[0].click()
     done = browser.find_elements(By.XPATH, "//span[contains(text(),'You have completed!')]")
-    
+
     browser.close()
     return done
 
@@ -60,7 +60,7 @@ def check_result(res) -> str:
 
 if __name__ == "__main__":    
     # IDs = ["123843", "127727", "127744", "122908", '125916', '066763', '116282', '121713', '125897', '115697']
-    IDs = ['125800', '123843', '127744']
+    IDs = ['125800', '123843']
 
     for ID in IDs:
         # temp = temperatureGen()
